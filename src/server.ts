@@ -2,12 +2,14 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors"
 import { UserRouter } from "./router/userRouter";
+import { ConfigServer } from "./config/config";
 
-class ServerBootstrap {
+class ServerBootstrap extends ConfigServer{
     public app : express.Application = express() // ademas de tiparlo debemos llamar al metodo express()
-    private port:number = 8000;
+    private port:number = this.getNumberEnv('Port')||8000;// esto es para q pueda inicializar en el puerto de prodcution
 
     constructor(){
+        super();// esto es lo que viene de ConfigServer
         this.app.use(express.json())
         this.app.use(express.urlencoded({extended : true}))
         this.app.use(cors())

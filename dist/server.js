@@ -7,10 +7,12 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const userRouter_1 = require("./router/userRouter");
-class ServerBootstrap {
+const config_1 = require("./config/config");
+class ServerBootstrap extends config_1.ConfigServer {
     constructor() {
+        super(); // esto es lo que viene de ConfigServer
         this.app = (0, express_1.default)(); // ademas de tiparlo debemos llamar al metodo express()
-        this.port = 8000;
+        this.port = this.getNumberEnv('Port') || 8000; // esto es para q pueda inicializar en el puerto de prodcution
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
         this.app.use((0, cors_1.default)());
