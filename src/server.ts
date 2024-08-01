@@ -11,8 +11,15 @@ class ServerBootstrap {
         this.app.use(express.urlencoded({extended : true}))
         this.app.use(cors())
         this.app.use(morgan('dev'))
+
+        this.app.get("/api", (req,res)=>{
+            res.status(200).json({
+                message : "Hola Mundo"
+            })
+        })
         this.listen()
     }// con la configuracion del contructor inicializamos el servidor 
+
 
 
     public listen(){
