@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors"
+import { UserRouter } from "./router/userRouter";
 
 class ServerBootstrap {
     public app : express.Application = express() // ademas de tiparlo debemos llamar al metodo express()
@@ -12,14 +13,14 @@ class ServerBootstrap {
         this.app.use(cors())
         this.app.use(morgan('dev'))
 
-        this.app.get("/api", (req,res)=>{
-            res.status(200).json({
-                message : "Hola Mundo"
-            })
-        })
+        this.app.use('/api',this.routers())        
         this.listen()
     }// con la configuracion del contructor inicializamos el servidor 
 
+    routers(): Array<express.Router>{
+    return [new UserRouter().router]// aca van los enrutadores con el metodo router, cada uno como un indice del array
+
+    }
 
 
     public listen(){
