@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
-const userRouter_1 = require("./router/userRouter");
+const userRouter_1 = require("./user/userRouter");
 const config_1 = require("./config/config");
 const typeorm_1 = require("typeorm");
 class ServerBootstrap extends config_1.ConfigServer {

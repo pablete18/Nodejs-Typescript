@@ -42,7 +42,7 @@ export abstract class ConfigServer {// // una clase abstracta no se puede instan
             username : this.getEnviroment("DB_USER"),
             password : this.getEnviroment("DB_PASSWORD"),
             database : this.getEnviroment("DB_DATABASE"),
-            entities : [__dirname + "/../**/*.entity{.ts,.js}"],
+            entities : [__dirname + "../**/*.entity{.ts,.js}"],// "/../**/*.entity{.ts,.js}" 
             migrations : [__dirname + "/../../migrations/*{.ts,.js}"],
             synchronize : true,
             logging : false,
